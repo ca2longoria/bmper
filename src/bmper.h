@@ -193,10 +193,10 @@ void del_BMP24File(BMP24File* bmp, byte del_flags) {
 }
 
 void BMP24File_fill(BMP24File* bmp, pix24 p) {
-	int i,count;
-	count = bmp->info.width * bmp->info.height;
-	for (i=0; i < count; ++i)
-		bmp->pixels[i] = p;
+	int i,j;
+	for (i=0; i < bmp->info.height; ++i)
+		for (j=0; j < bmp->info.width; ++j)
+			bmp->pr[i][j] = p;
 }
 
 FILE* BMP24File_write(BMP24File* bmp, FILE* f) {
