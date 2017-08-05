@@ -6,7 +6,7 @@ int main(int argc, char** argv) {
 	
 	printf("dayam\n");
 	
-	BMP24File* bmp = init_BMP24File(alloc_BMP24File(),4,5);
+	BMP24File* bmp = init_BMP24File(alloc_BMP24File(),5,6);
 	
 	printf("confirm union: %x=%x\n",bmp->pixels,bmp->bytes);
 	
@@ -44,6 +44,8 @@ int main(int argc, char** argv) {
 	
 	BMP24File_fill(bmp, pix24_int(0x303030));
 	bmp->pr[0][0] = pix24_int(0x0000ff);
+	bmp->pr[1][0] = pix24_int(0x00ff00);
+	bmp->pr[2][0] = pix24_int(0xff0000);
 	bmp->pixels[0] = pix24_int(0xff0000);
 	
 	FILE* f = fopen("dasbmp.bmp","wb");

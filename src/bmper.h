@@ -169,7 +169,8 @@ BMP24File* init_BMP24File(BMP24File* bmp, int w, int h) {
 	bmp->info.bit_count = 24;
 	bmp->info.width = w;
 	bmp->info.height = h;
-	bmp->bsize = true_row_width(bmp->info.width*3) * bmp->info.height;
+	int twidth = true_row_width(bmp->info.width*3);
+	bmp->bsize = twidth * bmp->info.height;
 	bmp->file.size = 14 + 40 + bmp->bsize;
 	bmp->file.off_bits = 14+40;
 	bmp->info.size_image = bmp->bsize;
@@ -179,7 +180,7 @@ BMP24File* init_BMP24File(BMP24File* bmp, int w, int h) {
 	bmp->pr = (pix24**)malloc(sizeof(pix24*)*bmp->info.height);
 	int i;
 	for (i=0; i < bmp->info.height; ++i)
-		bmp->pr[i] = &(bmp->pixels[(h-i-1)*w]);
+		bmp->pr[i] = (pix24*)&(bmp->bytes[(h-i-1)*twidth]);
 	
 	return bmp;
 }
