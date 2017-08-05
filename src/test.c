@@ -42,6 +42,7 @@ int main(int argc, char** argv) {
 		printf("(%i: %i) ",i,true_row_width(i));
 	printf("\n");
 	
+	BMP24File_fill(bmp, pix24_int(0x303030));
 	bmp->pr[0][0] = pix24_int(0x0000ff);
 	bmp->pixels[0] = pix24_int(0xff0000);
 	

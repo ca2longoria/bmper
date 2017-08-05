@@ -6,6 +6,8 @@ all: clean compiletest
 	
 clean:
 	-rm build/*
+pull:
+	git pull
 test:	compiletest runtest
 
 compiletest:
