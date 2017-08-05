@@ -192,6 +192,13 @@ void del_BMP24File(BMP24File* bmp, byte del_flags) {
 		free(bmp);
 }
 
+void BMP24File_fill(BMP24File* bmp, pix24 p) {
+	int i,count;
+	count = bmp->info.width * bmp->info.height;
+	for (i=0; i < count; ++i)
+		bmp->pixels[i] = p;
+}
+
 FILE* BMP24File_write(BMP24File* bmp, FILE* f) {
 	// NOTE: The compiler held the BMPFileHeader struct at an even 16 bytes,
 	//   despite only needing 14, by spacing .type and .size oddly.  This prompted
